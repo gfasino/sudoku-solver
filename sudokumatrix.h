@@ -9,10 +9,10 @@ class sudokumatrix{
     std::vector<sudokumatrix*> getNewMatices(int x, int y) const;
     bool isValid(int x, int y, short int val) const;
     void setCell(int x, int y, short int val);
-    sudokumatrix(const sudokumatrix* obj, int x, int y, short int val);
     std::vector<int> getBound(const int v) const; //static
 
   public:
+    sudokumatrix(const sudokumatrix* obj, int x, int y, short int val);
     sudokumatrix();
     sudokumatrix(const short int mat_[9][9]);
     sudokumatrix(const sudokumatrix& obj) ;
@@ -21,5 +21,4 @@ class sudokumatrix{
     bool isFree();
 	  std::ostream& operator<<(std::ostream& out);
     void printall();
-
 };

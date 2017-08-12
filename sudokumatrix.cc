@@ -19,7 +19,7 @@ sudokumatrix::sudokumatrix(const sudokumatrix* obj, int x, int y, short int val)
   for(int i=0;i<9;i++)
     for (int j = 0; j < 9; j++)
       mat[i][j] = obj->mat[i][j];
-  mat[x][y] = val;
+  setCell(x,y,val);
 }
 
 sudokumatrix::~sudokumatrix() {
@@ -36,8 +36,11 @@ std::ostream& sudokumatrix::operator<<(std::ostream& out){
 
 void sudokumatrix::printall(){
   for(int i=0;i<9;i++){
-    for (int j = 0; j < 9; j++)
+    for (int j = 0; j < 9; j++){
+      if(j%3==0) std::cout<<" ";
       std::cout<<mat[i][j];
+    }
+    if(i%3==0)     std::cout<<"\n";
     std::cout<<"\n";
   }
 }
@@ -57,9 +60,10 @@ std::vector<int> sudokumatrix::getFirstFreeCell() const{
 std::vector<sudokumatrix*> sudokumatrix::getNewMatices(int x, int y) const{
   std::vector<sudokumatrix*> arr;
   for (int i = 1; i < 10; i++)
-    if(isValid(x,y,i))
-      arr[i] = new sudokumatrix(this, x, y, i);
-    return arr;
+    if(isValid(x,y,i)){
+      arr.push_back(new sudokumatrix(this, x, y, i));
+    }
+  return arr;
 }
 
 std::vector<sudokumatrix*> sudokumatrix::getNewMatices() const{
@@ -68,7 +72,8 @@ std::vector<sudokumatrix*> sudokumatrix::getNewMatices() const{
 }
 
 void sudokumatrix::setCell(int x, int y, short int val){
-  mat[x][y] = val;
+  if(x <9 && y < 9)
+    mat[x][y] = val;
 }
 
 std::vector<int> sudokumatrix::getBound(const int v) const{
@@ -83,6 +88,7 @@ std::vector<int> sudokumatrix::getBound(const int v) const{
   std::vector<int> r = {6, 9};
   return r;
 }
+
 
 bool sudokumatrix::isValid(int x, int y, short int val) const{
   if(x > 8 || y > 8)
@@ -106,6 +112,6 @@ bool sudokumatrix::isFree(){
   for (int i = 0; i < 9; i++)
     for (int j = 0; j < 9; j++)
       if(mat[i][j] == 0)
-        return false;
-  return true;
+        return true;
+  return false;
 }
