@@ -36,11 +36,12 @@ std::ostream& sudokumatrix::operator<<(std::ostream& out){
 
 void sudokumatrix::printall(){
   for(int i=0;i<9;i++){
+    if(i%3==0)
+      std::cout<<"\n";
     for (int j = 0; j < 9; j++){
       if(j%3==0) std::cout<<" ";
       std::cout<<mat[i][j];
     }
-    if(i%3==0)     std::cout<<"\n";
     std::cout<<"\n";
   }
 }

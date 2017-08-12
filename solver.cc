@@ -1,21 +1,28 @@
 #include "solver.h"
+#include <queue>
 
 sudokumatrix solver::solve(sudokumatrix* start){
-  std::vector<sudokumatrix*> work;
-  work.push_back(start);
+  std::queue<sudokumatrix*> work;
+
   int index  = 0;
-
+  sudokumatrix* current = start;
   do {
-    std::vector<sudokumatrix*> get = work[index]->getNewMatices();
-    work.insert( work.end(), get.begin(), get.end() );
 
-    work.erase(work.begin());
+    std::vector<sudokumatrix*> get = current->getNewMatices();
 
-    if(!(work[index]->isFree())){
-      std::cout << "thend" << '\n';
-      return sudokumatrix(*work[index]);
+    for (const auto& e: get)
+      work.push(e);
+
+
+    if(!(current->isFree())){
+      return sudokumatrix(*current);
     }
 
-  }while(work.size()>0);
+    //delete current;
+
+    current = work.front();
+    work.pop();
+
+  }while(current);
   return sudokumatrix();
 }

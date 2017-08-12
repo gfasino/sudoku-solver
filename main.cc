@@ -12,6 +12,5 @@ int main(){
     std::cout<<"no sol!";
   else
     ret.printall();
-
   return 0;
 }
