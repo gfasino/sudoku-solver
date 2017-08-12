@@ -19,6 +19,6 @@ class sudokumatrix{
     ~sudokumatrix();
     std::vector<sudokumatrix*> getNewMatices() const;
     bool isFree();
-	  std::ostream& operator<<(std::ostream& out);
     void printall();
+    int getCell(int x, int y);
 };

@@ -25,15 +25,6 @@ sudokumatrix::sudokumatrix(const sudokumatrix* obj, int x, int y, short int val)
 sudokumatrix::~sudokumatrix() {
 }
 
-std::ostream& sudokumatrix::operator<<(std::ostream& out){
-  for(int i=0;i<9;i++){
-    for (int j = 0; j < 9; j++)
-      out<<mat[i][j];
-    out<<"\n";
-  }
-  return out;
-}
-
 void sudokumatrix::printall(){
   for(int i=0;i<9;i++){
     if(i%3==0)
@@ -88,6 +79,10 @@ std::vector<int> sudokumatrix::getBound(const int v) const{
   }
   std::vector<int> r = {6, 9};
   return r;
+}
+
+int sudokumatrix::getCell(int x, int y){
+  return mat[x][y];
 }
 
 
