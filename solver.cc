@@ -3,26 +3,17 @@
 
 sudokumatrix solver::solve(sudokumatrix* start){
   std::queue<sudokumatrix*> work;
-
-  int index  = 0;
-  sudokumatrix* current = start;
+  work.push(start);
   do {
-
-    std::vector<sudokumatrix*> get = current->getNewMatices();
-
+    std::vector<sudokumatrix*> get = work.front()->getNewMatices();
     for (const auto& e: get)
       work.push(e);
-
-
-    if(!(current->isFree())){
-      return sudokumatrix(*current);
+    if(!work.front()->isFree()){
+      return sudokumatrix(*work.front());
     }
-
-    //delete current;
-
-    current = work.front();
+    //delete work.front() //does give error
     work.pop();
+  }while(work.front());
 
-  }while(current);
-  return sudokumatrix();
+  return sudokumatrix(*start);
 }

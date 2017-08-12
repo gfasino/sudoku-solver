@@ -9,7 +9,7 @@ int main(){
   sudokumatrix ret = solver::solve(&s);
 
   if(ret.isFree())
-    std::cout<<"no sol!";
+    std::cout<<"solution not found";
   else
     ret.printall();
   return 0;

@@ -15,7 +15,7 @@ class sudokumatrix{
     sudokumatrix(const sudokumatrix* obj, int x, int y, short int val);
     sudokumatrix();
     sudokumatrix(const short int mat_[9][9]);
-    sudokumatrix(const sudokumatrix& obj) ;
+    sudokumatrix(const sudokumatrix& obj);
     ~sudokumatrix();
     std::vector<sudokumatrix*> getNewMatices() const;
     bool isFree();
